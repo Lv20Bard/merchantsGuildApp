@@ -7,19 +7,38 @@ import {
   View
 } from 'react-native';
 
-// Header
+// footer
 export default class Footer extends Component{
+  constructor(){
+      super();
+
+      this.navigate = this.navigate.bind(this)
+  }
+
+  navigate(name){
+      this.props.navigator.push({
+          name
+      })
+  }
+  
+  
   render(){
     return(
       <View style={styles.footer}>
-        <TouchableHighlight onPress={() => this.props.navigator.push('store')} style={styles.btn}>
+        <TouchableHighlight onPress={() => this.navigate('store')} style={styles.btn}>
             <Text style={styles.btnTxt}>Store</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.props.navigator.push('requests')}>
+        <TouchableHighlight onPress={() => this.navigate('requests')}>
             <Text style={styles.btnTxt}>Request</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.props.navigator.push('postStore')}>
-            <Text style={styles.btnTxt}>Post</Text>
+        <TouchableHighlight onPress={() => this.navigate('postStore')}>
+            <Text style={styles.btnTxt}>Post Item</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => this.navigate('postRequests')}>
+            <Text style={styles.btnTxt}>Post Request</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => this.navigate('login')}>
+            <Text style={styles.btnTxt}>Login</Text>
         </TouchableHighlight>
       </View>
     );
@@ -43,7 +62,7 @@ const styles = StyleSheet.create({
   btnTxt:{
     color:'white',
     marginTop:18,
-    fontSize:18,
+    fontSize:14,
   },
 
   

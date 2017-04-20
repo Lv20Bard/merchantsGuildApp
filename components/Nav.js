@@ -25,22 +25,22 @@ export default class Nav extends Component {
     renderScene(route, navigator){
         console.log('route');
         console.log(route);
-        if(route.name === 'store'){
+        if(route.name === 'store' ){
             return <StoreContent navigator={navigator} />
         }
-        else if(route.name === 'requests'){
+        else if(route.name === 'requests' ){
             return <RequestContent navigator={navigator} />
         }
-        else if(route.name === 'login'){
+        else if(route.name === 'login' ){
             return <LoginPage navigator={navigator} />
         }
-        else if(route.name === 'postStore'){
+        else if(route.name === 'postStore' ){
             return <PostStore navigator={navigator} />
         }
-        // else if(route.name === 'postRequests'){
-        //     return <PostRequest navigator={navigator} />
-        // }
-        else if(route.name === 'storeItem'){
+        else if(route.name === 'postRequests'){
+            return <PostRequest navigator={navigator} />
+        }
+        else if(route.name === 'storeItem' ){
             return <StoreItem navigator={navigator} />
         }
     }

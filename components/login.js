@@ -9,6 +9,8 @@ import {
   AlertIOS
 } from 'react-native';
 
+import Footer from './footer';
+
 let STORAGE_KEY = 'token';
 
 import t from 'tcomb-form-native';
@@ -131,7 +133,7 @@ export default class Login extends Component{
 
 
         </View>
-
+        <Footer navigator={this.props.navigator}/>
       </View>
     );
   }

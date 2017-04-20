@@ -22,7 +22,7 @@ export default class StoreContent extends Component{
 
     navigate(route){
         this.props.navigator.push({
-            route
+            name
         })
     }
     

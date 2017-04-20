@@ -9,6 +9,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
+import Footer from './footer';
 
 let STORAGE_KEY = 'token';
 
@@ -94,6 +95,7 @@ export default class PostStore extends Component{
         <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
             <Text style={styles.buttonText}>Post</Text>
         </TouchableHighlight>  
+        <Footer navigator={this.props.navigator}/>
       </View>
     );
   }

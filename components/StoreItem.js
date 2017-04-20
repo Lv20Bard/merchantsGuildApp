@@ -21,7 +21,7 @@ export default class StoreItem extends Component {
     render(){
         return(
             <View style={styles.container}>
-                
+                <Text>PlaceHolder</Text>
 
             </View>
         )
