@@ -1,0 +1,73 @@
+// Individual Cards
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight
+} from 'react-native';
+
+
+export default class RequestCard extends Component{
+  constructor(props){
+    super(props);
+
+    
+  }
+
+
+
+
+  render(){
+    return(
+        <View style={styles.card}>
+          <View>
+            <Text style={styles.cardText}>{this.props.data.name}</Text>
+          </View>
+          <View>
+              <Text style={styles.cardText}> {this.props.data.discription}</Text>
+              <TouchableHighlight style={styles.button}>
+                <Text style={styles.buttonText}>View</Text>
+              </TouchableHighlight>
+          </View>
+        </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  card:{
+    backgroundColor: '#f1f2eb',
+    margin: 5,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.5
+  },
+  cardText:{
+    padding: 5,
+    margin:5,
+  },
+  button: {
+    height: 36,
+    backgroundColor: '#d4af37',
+    borderColor: '#b0912e',
+    borderWidth: 1,
+    borderRadius: 0,
+    marginBottom: 10,
+    marginLeft: 5,
+    marginRight: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+   buttonText: {
+    fontSize: 16,
+    color: '#ffffff',
+    alignSelf: 'center'
+  },
+  
+});
+
