@@ -14,6 +14,8 @@ export default class requestList extends Component{
   constructor(props){
     super(props);
 
+
+    console.log(this.props);
     this.state={
       requestList:[]
     }
@@ -36,10 +38,8 @@ export default class requestList extends Component{
   render(){
     var allRequests = this.state.requestList.map(function(theRequests){
       return(
-        <View>
-          <RequestCard data={theRequests} key={theRequests._id} />
-
-        </View>
+      
+          <RequestCard data={theRequests} key={theRequests._id}  />        
       )
     });  
     

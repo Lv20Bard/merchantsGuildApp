@@ -80,21 +80,23 @@ export default class PostRequest extends Component{
   
   render(){
     return(
-      <View style={styles.container}>
-        <View style={styles.row}>
-          <Text style={styles.title}>Post an Request for sale</Text>
+      <View style={{flex:1}}>
+        <View style={styles.container}>    
+          <View style={styles.row}>
+            <Text style={styles.title}>Post an Request for sale</Text>
+          </View>
+          {/*Form*/}
+          <View style={styles.row}>
+            <Form
+              ref="form"
+              type={RequestItem}
+              options={options}
+            />
+          </View>
+          <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
+              <Text style={styles.buttonText}>Post</Text>
+          </TouchableHighlight>  
         </View>
-        {/*Form*/}
-        <View style={styles.row}>
-          <Form
-            ref="form"
-            type={RequestItem}
-            options={options}
-          />
-        </View>
-        <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
-            <Text style={styles.buttonText}>Post</Text>
-        </TouchableHighlight>  
         <Footer navigator={this.props.navigator}/>
       </View>
     );
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
 container:{
     justifyContent: 'center',
     padding: 20,
+    flex:1,
     backgroundColor: '#ffffff',
   },
   

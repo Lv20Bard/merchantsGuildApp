@@ -107,31 +107,33 @@ export default class Login extends Component{
   
   render(){
     return(
-      <View style={styles.container}>
-        {/*Brand At Top*/}
-        <View style={styles.row}>
-          <Text style={styles.title}>Signup To Post and Buy!</Text>
-        </View>
-        {/*Form*/}
-        <View style={styles.row}>
-          <Form
-            ref="form"
-            type={Person}
-            options={options}
-          />
-        </View>
-        <View style={styles.row}>
-          <TouchableHighlight onPress={this._userSignup.bind(this)} style={styles.button}>
-            <Text style={styles.buttonText}>Signup</Text>
-          </TouchableHighlight>  
-          <TouchableHighlight onPress={this._userSignup.bind(this)} style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableHighlight>  
-          <TouchableHighlight onPress={this._userLogout.bind(this)} style={styles.buttonLogout}>
-            <Text style={styles.buttonText}>Logout</Text>
+      <View style={{flex:1}}>    
+        <View style={styles.container}>
+          {/*Brand At Top*/}
+          <View style={styles.row}>
+            <Text style={styles.title}>Signup To Post and Buy!</Text>
+          </View>
+          {/*Form*/}
+          <View style={styles.row}>
+            <Form
+              ref="form"
+              type={Person}
+              options={options}
+            />
+          </View>
+          <View style={styles.row}>
+            <TouchableHighlight onPress={this._userSignup.bind(this)} style={styles.button}>
+              <Text style={styles.buttonText}>Signup</Text>
+            </TouchableHighlight>  
+            <TouchableHighlight onPress={this._userSignup.bind(this)} style={styles.button}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableHighlight>  
+            <TouchableHighlight onPress={this._userLogout.bind(this)} style={styles.buttonLogout}>
+              <Text style={styles.buttonText}>Logout</Text>
           </TouchableHighlight>  
 
 
+          </View>
         </View>
         <Footer navigator={this.props.navigator}/>
       </View>
@@ -143,6 +145,7 @@ const styles = StyleSheet.create({
   container:{
     justifyContent: 'center',
     padding: 20,
+    flex:1,
     backgroundColor: '#ffffff',
   },
   

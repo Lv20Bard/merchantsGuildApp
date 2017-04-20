@@ -12,9 +12,14 @@ export default class RequestCard extends Component{
   constructor(props){
     super(props);
 
-    
+    this.navigate = this.navigate.bind(this);
   }
 
+  navigate(name){
+    this.props.navigator.push({
+      name
+    })
+  }
 
 
 
@@ -26,9 +31,9 @@ export default class RequestCard extends Component{
           </View>
           <View>
               <Text style={styles.cardText}> {this.props.data.discription}</Text>
-              <TouchableHighlight style={styles.button}>
+              {/*<TouchableHighlight onPress={()=>(this.navigate('requestItem'))} style={styles.button}>
                 <Text style={styles.buttonText}>View</Text>
-              </TouchableHighlight>
+              </TouchableHighlight>*/}
           </View>
         </View>
     )

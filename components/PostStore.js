@@ -80,21 +80,23 @@ export default class PostStore extends Component{
   
   render(){
     return(
-      <View style={styles.container}>
-        <View style={styles.row}>
-          <Text style={styles.title}>Post an Item for sale</Text>
+      <View style={{flex:1}}>
+        <View style={styles.container}>    
+          <View style={styles.row}>
+            <Text style={styles.title}>Post an Item for sale</Text>
+          </View>
+          {/*Form*/}
+          <View style={styles.row}>
+            <Form
+              ref="form"
+              type={StoreItem}
+              options={options}
+            />
+          </View>
+          <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
+              <Text style={styles.buttonText}>Post</Text>
+          </TouchableHighlight>  
         </View>
-        {/*Form*/}
-        <View style={styles.row}>
-          <Form
-            ref="form"
-            type={StoreItem}
-            options={options}
-          />
-        </View>
-        <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
-            <Text style={styles.buttonText}>Post</Text>
-        </TouchableHighlight>  
         <Footer navigator={this.props.navigator}/>
       </View>
     );
@@ -104,6 +106,7 @@ export default class PostStore extends Component{
 const styles = StyleSheet.create({
 container:{
     justifyContent: 'center',
+    flex:1,
     padding: 20,
     backgroundColor: '#ffffff',
   },

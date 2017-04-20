@@ -12,12 +12,12 @@ export default class StoreCard extends Component{
   constructor(props){
     super(props);
 
-    
+    this.navigate = this.navigate.bind(this)
   }
 
-  navigate(route){
+  navigate(name){
     this.props.navigator.push({
-      route
+      name
     })
   }
 
@@ -29,9 +29,9 @@ export default class StoreCard extends Component{
         </View>
         <View>
           <Text style={styles.cardText}> {this.props.data.discription}</Text>
-          <TouchableHighlight onPress={()=>(this.navigate('storeItem'))} style={styles.button}>
+          {/*<TouchableHighlight onPress={()=>(this.navigate('storeItem'))} style={styles.button}>
             <Text style={styles.buttonText}>View</Text>
-          </TouchableHighlight>
+          </TouchableHighlight>*/}
         </View>
       </View>
     )

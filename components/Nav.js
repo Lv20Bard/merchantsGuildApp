@@ -9,6 +9,7 @@ import PostStore from './PostStore';
 import PostRequest from './PostRequest';
 
 import StoreItem from './StoreItem';
+import RequestItem from './RequestItem';
 
 export default class Nav extends Component {
     
@@ -42,6 +43,9 @@ export default class Nav extends Component {
         }
         else if(route.name === 'storeItem' ){
             return <StoreItem navigator={navigator} />
+        }
+        else if(route.name === 'requestItem'){
+            return <RequestItem navigator={navigator} />
         }
     }
     

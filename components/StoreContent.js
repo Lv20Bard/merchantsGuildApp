@@ -14,13 +14,12 @@ import Footer from './footer';
 export default class StoreContent extends Component{
     constructor(props){
         super(props)
-        console.log("StoreContent");
-        console.log(this.props);
+       
 
         this.navigate = this.navigate.bind(this);
     }
 
-    navigate(route){
+    navigate(name){
         this.props.navigator.push({
             name
         })

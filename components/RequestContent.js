@@ -15,7 +15,6 @@ export default class RequestContent extends Component{
   constructor(props){
     super(props)
 
-    console.log(props);  
 
     this.navigate = this.navigate.bind(this);
   }
@@ -28,9 +27,9 @@ export default class RequestContent extends Component{
   
   render(){
     return(
-      <View>
+      <View style={{flex:1}}>
         <ScrollView style={styles.container}>
-          <RequestCards />
+          <RequestCards navigator={this.props.navigator}/>
         </ScrollView>
         <Footer navigator={this.props.navigator}/>
       </View>
@@ -40,7 +39,7 @@ export default class RequestContent extends Component{
 
 const styles = StyleSheet.create({
     container:{
-
+      flex:1,
     }
   
 });
