@@ -11,7 +11,7 @@ import {
 
 import Footer from './footer';
 
-let STORAGE_KEY = 'token';
+let STORAGE_KEY = "token";
 
 import t from 'tcomb-form-native';
 
@@ -31,17 +31,17 @@ const options = {};
 export default class Login extends Component{
 
   async _onValueChange(item, selectedValue){
-    try{
+    try {
       await AsyncStorage.setItem(item, selectedValue);
-    }catch(err){
-      console.log(err.message);
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
     }
   }
 
   async _userSignup(){
     var value = this.refs.form.getValue();
     if(value){
-      fetch('http://localhost:3000/users/login', {
+      fetch('http://localhost:3000/users/', {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -53,8 +53,9 @@ export default class Login extends Component{
         })
       })
       .then((response) => response.json())
-      .then((responseJSON) => {
-        this._onValueChange(STORAGE_KEY, responseJSON.token)
+      .then((responseData) => {
+        console.log(responseData);
+        this._onValueChange(STORAGE_KEY, responseData.token),
         AlertIOS.alert('Login Successful');
       })
       .catch((err) => {
@@ -70,23 +71,26 @@ export default class Login extends Component{
     if(value){
       fetch( "http://localhost:3000/users/login",{
         method:"POST",
-        headers:{
-          'Accept' :'application/json',
+        headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({
-            email: value.email,
-            password:value.password,
+        body: JSON.stringify({
+          email: value.email,
+          password: value.password,
         })
       })
       .then((response) => response.json())
-      .then((responseJSON)=> {
-         AlertIOS.alert('Login Successful');
-        this._onValueChange(STORAGE_KEY, responseJSON.token)
+      .then((responseData) => {
+        AlertIOS.alert('Login Successful');
+         this._onValueChange(STORAGE_KEY, responseData.id_token)
        
       }) 
       .catch((err) => {
-        console.log(err)
+        AlertIOS.alert(
+          "Login Unsuccessful",
+          "Please double check your username and password"
+        )
       })
       .done();
     }

@@ -31,13 +31,15 @@ export default class PostRequest extends Component{
   constructor(){
     super()
 
-
+    this.postRequest = this.postRequest.bind(this);
   }
   
   async _retrieveToken(){
     try{
       const value = await AsyncStorage.getItem(STORAGE_KEY);
+      
       if(value){
+        
         return(value);
       }
     }
@@ -46,33 +48,43 @@ export default class PostRequest extends Component{
     }
   }
 
-  postItem(){
-    var token = this._retrieveToken();
-    var value = this.refs.form.getValue();
-    if(value){
-      fetch("http://localhost:3000/requests" ,{
-        method:"POST",
-        header: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: value.name,
-          budget: value.budget,
-          disciption: value.desciption,
-          tags:value.tags,
-          token: token
+  postRequest(){
+    var token;
+    this._retrieveToken()
+    .then((response) => {
+     
+      token = response;
+      var value = this.refs.form.getValue();
+
+
+      if(value){
+        fetch("http://localhost:3000/requests" ,{
+          method:"POST",
+          header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: value.name,
+            budget: value.price,
+            disciption: value.desciption,
+            tags: value.tags,
+            token: token
+          })
         })
-      })
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        console.log(responseJSON);
-        AlertIOS.alert('Success');
-      })
-      .catch((err)=>{
-        AlertIOS.alert('Error');
-      })
-    }
+        .then((response) => response.json())
+        .then((responseJSON) => {
+          console.log(responseJSON);
+          AlertIOS.alert(''+responseJSON.message);
+        })
+        .catch((err)=>{
+          AlertIOS.alert('Error');
+        })
+      }
+    }) 
+    .catch((err) => {
+      console.log(err);
+    });
   }
   
   
@@ -93,7 +105,7 @@ export default class PostRequest extends Component{
               options={options}
             />
           </View>
-          <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
+          <TouchableHighlight onPress={this.postRequest} style={styles.button}>
               <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>  
         </View>

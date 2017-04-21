@@ -31,13 +31,15 @@ export default class PostStore extends Component{
   constructor(){
     super()
 
-
+    this.postItem = this.postItem.bind(this);
   }
   
   async _retrieveToken(){
     try{
       const value = await AsyncStorage.getItem(STORAGE_KEY);
+      
       if(value){
+        console.log(value);
         return(value);
       }
     }
@@ -47,32 +49,42 @@ export default class PostStore extends Component{
   }
 
   postItem(){
-    var token = this._retrieveToken();
-    var value = this.refs.form.getValue();
-    if(value){
-      fetch("http://localhost:3000/items" ,{
-        method:"POST",
-        header: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: value.name,
-          price: value.price,
-          disciption: value.desciption,
-          tags:value.tags,
-          token: token
+    var token;
+    this._retrieveToken()
+    .then((response) => {
+     
+      token = response;
+      var value = this.refs.form.getValue();
+
+
+      if(value){
+        fetch("http://localhost:3000/items" ,{
+          method:"POST",
+          header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: value.name,
+            price: value.price,
+            disciption: value.desciption,
+            tags: value.tags,
+            token: token
+          })
         })
-      })
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        console.log(responseJSON);
-        AlertIOS.alert('Success');
-      })
-      .catch((err)=>{
-        AlertIOS.alert('Error');
-      })
-    }
+        .then((response) => response.json())
+        .then((responseJSON) => {
+          console.log(responseJSON);
+          AlertIOS.alert(''+responseJSON.message);
+        })
+        .catch((err)=>{
+          AlertIOS.alert('Error');
+        })
+      }
+    }) 
+    .catch((err) => {
+      console.log(err);
+    });
   }
   
   
@@ -93,7 +105,7 @@ export default class PostStore extends Component{
               options={options}
             />
           </View>
-          <TouchableHighlight onPress={this.postItem.bind(this)} style={styles.button}>
+          <TouchableHighlight onPress={this.postItem} style={styles.button}>
               <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>  
         </View>
