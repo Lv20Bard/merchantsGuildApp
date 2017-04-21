@@ -55,28 +55,36 @@ export default class PostRequest extends Component{
      
       token = response;
       var value = this.refs.form.getValue();
-
+      var body = JSON.stringify({
+            name: value.name,
+            budget: value.price,
+            disciption: value.desciption,
+            tags: value.tags,
+            token: token
+      });
+      console.log(body);
+          
+        
 
       if(value){
         fetch("http://localhost:3000/requests" ,{
           method:"POST",
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            
+            'Content-Type': 'application/json'   
           },
-          body: JSON.stringify({
-            name: value.name,
-            budget: value.price,
-            disciption: value.desciption,
-            tags: value.tags,
-            
-          })
+          body: body
+          
         })
         .then((response) => response.json())
         .then((responseJSON) => {
           console.log(responseJSON);
-          AlertIOS.alert(''+responseJSON.message);
+          if(responseJSON.message === undefined){
+            AlertIOS.alert('Success');
+          }
+          else{
+            AlertIOS.alert(''+responseJSON.message);
+          }
         })
         .catch((err)=>{
           AlertIOS.alert('Error');
@@ -85,7 +93,8 @@ export default class PostRequest extends Component{
     }) 
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .done();
   }
   
   

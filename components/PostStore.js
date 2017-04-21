@@ -78,8 +78,13 @@ export default class PostStore extends Component{
         })
         .then((response) => response.json())
         .then((responseJSON) => {
-          console.log(responseJSON);
-          AlertIOS.alert(''+responseJSON.message);
+          
+          if(responseJSON.message === undefined){
+            AlertIOS.alert('Success');
+          }
+          else{
+            AlertIOS.alert(''+responseJSON.message);
+          }
         })
         .catch((err)=>{
           AlertIOS.alert('Error');
