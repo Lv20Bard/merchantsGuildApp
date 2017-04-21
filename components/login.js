@@ -40,6 +40,10 @@ export default class Login extends Component{
 
   async _userSignup(){
     var value = this.refs.form.getValue();
+    console.log(JSON.stringify({
+          email: value.email,
+          password: value.password,
+        }));
     if(value){
       fetch('http://localhost:3000/users/', {
         method: "POST",

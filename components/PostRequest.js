@@ -60,16 +60,17 @@ export default class PostRequest extends Component{
       if(value){
         fetch("http://localhost:3000/requests" ,{
           method:"POST",
-          header: {
+          headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            
           },
           body: JSON.stringify({
             name: value.name,
             budget: value.price,
             disciption: value.desciption,
             tags: value.tags,
-            token: token
+            
           })
         })
         .then((response) => response.json())

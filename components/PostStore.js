@@ -55,22 +55,26 @@ export default class PostStore extends Component{
      
       token = response;
       var value = this.refs.form.getValue();
-
-
-      if(value){
-        fetch("http://localhost:3000/items" ,{
-          method:"POST",
-          header: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+      var body = JSON.stringify({
             name: value.name,
             price: value.price,
             disciption: value.desciption,
             tags: value.tags,
             token: token
-          })
+      });
+      console.log(body);
+          
+        
+
+      if(value){
+        fetch("http://localhost:3000/items" ,{
+          method:"POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'   
+          },
+          body: body
+          
         })
         .then((response) => response.json())
         .then((responseJSON) => {
@@ -84,7 +88,8 @@ export default class PostStore extends Component{
     }) 
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .done();
   }
   
   
